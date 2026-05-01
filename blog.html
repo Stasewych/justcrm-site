@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог — JustCRM</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.page {
+  max-width: 1180px; margin: 0 auto; padding: 60px 24px 80px;
+}
+.page__header { margin-bottom: 48px; }
+.page__tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-400); margin-bottom: 14px;
+}
+.page__title {
+  font-size: 36px; font-weight: 700; color: var(--gray-900);
+  letter-spacing: -0.015em; margin-bottom: 12px;
+}
+.page__subtitle {
+  font-size: 16px; color: var(--gray-500); max-width: 480px;
+}
+
+.posts {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+}
+.post-card {
+  border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden;
+  text-decoration: none; transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex; flex-direction: column;
+}
+.post-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+.post-card__img {
+  width: 100%; height: 180px; object-fit: cover; background: var(--gray-100);
+}
+.post-card__body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.post-card__tag {
+  font-size: 11px; font-weight: 500; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
+}
+.post-card__title {
+  font-size: 16px; font-weight: 600; color: var(--gray-900);
+  line-height: 1.4; margin-bottom: 8px;
+}
+.post-card__excerpt {
+  font-size: 13px; line-height: 1.6; color: var(--gray-500);
+  flex: 1;
+}
+.post-card__meta {
+  font-size: 12px; color: var(--gray-400); margin-top: 16px;
+  padding-top: 12px; border-top: 1px solid var(--gray-100);
+}
+
+.posts__empty {
+  grid-column: 1 / -1; text-align: center; padding: 60px 0;
+}
+.posts__empty-title {
+  font-size: 18px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;
+}
+.posts__empty-desc { font-size: 14px; color: var(--gray-400); }
+
+@media (max-width: 900px) {
+  .posts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .posts { grid-template-columns: 1fr; }
+  .page__title { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <img class="logo__mark" src="assets/images/logo.png" alt="JustCRM">
+      <span class="logo__name">JustCRM</span>
+    </a>
+    <nav class="nav">
+      <div class="nav__item">
+        Продукт
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="billing.html">Управління справами</a>
+            <a href="billing.html">Білінг і час</a>
+            <a href="billing.html">Задачі</a>
+            <a href="billing.html">Контакти</a>
+            <a href="billing.html">AI-можливості</a>
+          </div>
+        </div>
+      </div>
+      <a href="compare.html" class="nav__link">Порівняння тарифів</a>
+      <a href="index.html#security" class="nav__link">Безпека</a>
+      <div class="nav__item">
+        Компанія
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="team.html">Команда</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="blog.html">Блог</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header__right">
+      <a href="#" class="header__login">Увійти</a>
+      <a href="#" class="header__cta">Почати безкоштовно</a>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <div class="page__header">
+    <div class="page__tag">Блог</div>
+    <h1 class="page__title">Новини та статті</h1>
+    <p class="page__subtitle">Юридична автоматизація, AI для юристів, продуктові оновлення JustCRM.</p>
+  </div>
+
+  <div class="posts">
+    <a href="#" class="post-card">
+      <div class="post-card__img" style="background:linear-gradient(135deg,var(--gray-100),var(--gray-200));"></div>
+      <div class="post-card__body">
+        <div class="post-card__tag">Продукт</div>
+        <div class="post-card__title">Як AI-диктовка економить 5 годин на тиждень</div>
+        <div class="post-card__excerpt">Юристи витрачають до 40% часу на ручний облік. Розповідаємо, як voice-to-text змінює підхід до тайм-трекінгу.</div>
+        <div class="post-card__meta">12 хвилин · Травень 2026</div>
+      </div>
+    </a>
+    <a href="#" class="post-card">
+      <div class="post-card__img" style="background:linear-gradient(135deg,var(--gray-200),var(--gray-100));"></div>
+      <div class="post-card__body">
+        <div class="post-card__tag">Юрринок</div>
+        <div class="post-card__title">CRM для юрфірми: чому Excel більше не працює</div>
+        <div class="post-card__excerpt">Аналіз типових проблем юрфірм, які ведуть справи в Excel, Notion і месенджерах. Що втрачаєте і як це виправити.</div>
+        <div class="post-card__meta">8 хвилин · Квітень 2026</div>
+      </div>
+    </a>
+    <a href="#" class="post-card">
+      <div class="post-card__img" style="background:linear-gradient(135deg,var(--gray-100),var(--gray-200));"></div>
+      <div class="post-card__body">
+        <div class="post-card__tag">Безпека</div>
+        <div class="post-card__title">Адвокатська таємниця в цифровому світі</div>
+        <div class="post-card__excerpt">НААУ виділяє 7 загроз цифрової безпеки. Як CRM допомагає захистити дані клієнтів замість WhatsApp і флешок.</div>
+        <div class="post-card__meta">10 хвилин · Квітень 2026</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<section class="final-cta">
+  <h2 class="final-cta__title">Спробуйте JustCRM безкоштовно</h2>
+  <p class="final-cta__desc">14 днів повного функціоналу Pro AI. Без картки, без зобов'язань.</p>
+  <div class="final-cta__actions">
+    <a href="#" class="final-cta__btn-primary">Почати безкоштовно</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__col"><div class="footer__col-title">Продукт</div><ul class="footer__links"><li><a href="billing.html">Справи</a></li><li><a href="billing.html">Білінг</a></li><li><a href="billing.html">Задачі</a></li><li><a href="billing.html">Контакти</a></li><li><a href="billing.html">AI</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Ресурси</div><ul class="footer__links"><li><a href="index.html#security">Безпека</a></li><li><a href="index.html#pricing">Тарифи</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Правове</div><ul class="footer__links"><li><a href="#">Конфіденційність</a></li><li><a href="#">Умови використання</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Контакти</div><ul class="footer__links"><li><a href="mailto:info@justsolution.org">info@justsolution.org</a></li><li><a href="tel:+380501234567">+380 50 123 45 67</a></li><li>Київ, Україна</li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__left"><div class="footer__logo"><img class="footer__logo-mark" src="assets/images/logo.png" alt=""> JustCRM</div><span class="footer__copy">© 2026 Just Solution</span></div>
+      <div class="footer__right"><a href="#" class="footer__contact-link">Конфіденційність</a><a href="#" class="footer__contact-link">Умови</a><div class="footer__social"><a href="https://www.linkedin.com/company/just-solution-ua/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a></div></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
