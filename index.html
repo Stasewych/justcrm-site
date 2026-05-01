@@ -246,9 +246,9 @@ body::after {
 
 /* --- SECURITY --- */
 .security {
-  position: relative; z-index: 1; background: var(--gray-900);
+  position: relative; z-index: 1; background: var(--gray-100);
   min-height: 100vh; display: flex; align-items: center;
-  scroll-snap-align: start; padding: 80px 0; color: #fff;
+  scroll-snap-align: start; padding: 80px 0;
 }
 .security__inner {
   max-width: 1180px; margin: 0 auto; padding: 0 24px; width: 100%;
@@ -260,27 +260,27 @@ body::after {
 }
 .security__title {
   font-size: 36px; font-weight: 700; letter-spacing: -0.015em;
-  margin-bottom: 16px;
+  color: var(--gray-900); margin-bottom: 16px;
 }
 .security__subtitle {
-  font-size: 16px; line-height: 1.7; color: var(--gray-400); margin-bottom: 40px;
+  font-size: 16px; line-height: 1.7; color: var(--gray-500); margin-bottom: 40px;
 }
 .security__headline {
-  font-size: 20px; font-weight: 500; line-height: 1.6; color: var(--gray-300);
-  border-left: 2px solid var(--gray-600); padding-left: 20px;
+  font-size: 20px; font-weight: 500; line-height: 1.6; color: var(--gray-600);
+  border-left: 2px solid var(--gray-300); padding-left: 20px;
 }
 .security__points {
   list-style: none; display: flex; flex-direction: column;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid var(--gray-200);
 }
 .security__point {
-  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 0; border-bottom: 1px solid var(--gray-200);
 }
 .security__point-title {
-  font-size: 15px; font-weight: 600; margin-bottom: 4px;
+  font-size: 15px; font-weight: 600; color: var(--gray-800); margin-bottom: 4px;
 }
 .security__point-desc {
-  font-size: 13px; line-height: 1.6; color: var(--gray-400);
+  font-size: 13px; line-height: 1.6; color: var(--gray-500);
 }
 
 /* --- PRICING --- */
@@ -635,8 +635,8 @@ body::after {
         <div class="security__point-desc">X-Frame-Options, XSS-Protection, Content-Type-Options, strict Referrer-Policy на рівні Nginx.</div>
       </div>
       <div class="security__point">
-        <div class="security__point-title">RBAC і аудит — в розробці</div>
-        <div class="security__point-desc">Розширена система ролей та повний журнал дій — у найближчих релізах.</div>
+        <div class="security__point-title">Ролі, дозволи та журнал дій</div>
+        <div class="security__point-desc">Розмежування доступу по ролях (RBAC). Аудит-лог — хто, коли і що змінив у системі.</div>
       </div>
     </div>
   </div>
