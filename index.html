@@ -244,6 +244,128 @@ body::after {
   .reveal, .feat__point { opacity: 1; transform: none; transition: none; }
 }
 
+/* --- PRICING --- */
+.pricing {
+  position: relative; z-index: 1; background: #fff;
+  min-height: 100vh; display: flex; align-items: center;
+  scroll-snap-align: start; padding: 80px 0;
+}
+.pricing__inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 24px; width: 100%;
+}
+.pricing__header {
+  text-align: center; margin-bottom: 48px;
+}
+.pricing__tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-400); margin-bottom: 14px;
+}
+.pricing__title {
+  font-size: 36px; font-weight: 700; color: var(--gray-900);
+  letter-spacing: -0.015em; margin-bottom: 16px;
+}
+.pricing__subtitle {
+  font-size: 16px; color: var(--gray-500); max-width: 480px; margin: 0 auto 32px;
+}
+
+/* Toggle */
+.pricing__toggle {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 48px;
+}
+.pricing__toggle-label {
+  font-size: 14px; font-weight: 500; color: var(--gray-400); cursor: pointer;
+}
+.pricing__toggle-label--active { color: var(--gray-900); }
+.pricing__toggle-switch {
+  width: 44px; height: 24px; background: var(--gray-200); border-radius: 12px;
+  position: relative; cursor: pointer; transition: background 0.2s ease;
+  border: none; padding: 0;
+}
+.pricing__toggle-switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; background: #fff; border-radius: 50%;
+  transition: transform 0.2s var(--ease); box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.pricing__toggle-switch.annual { background: var(--gray-900); }
+.pricing__toggle-switch.annual::after { transform: translateX(20px); }
+.pricing__save {
+  font-size: 11px; font-weight: 600; color: #16A34A; background: #F0FDF4;
+  padding: 2px 8px; border-radius: 99px;
+}
+
+/* Cards */
+.pricing__cards {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  align-items: start;
+}
+.pricing__card {
+  border: 1px solid var(--gray-200); border-radius: 12px;
+  padding: 32px 28px; background: #fff;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.pricing__card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.pricing__card--featured {
+  border-color: var(--gray-900); position: relative;
+}
+.pricing__card-badge {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; font-weight: 600; color: #fff; background: var(--gray-900);
+  padding: 3px 14px; border-radius: 99px; white-space: nowrap;
+}
+.pricing__card-name {
+  font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;
+}
+.pricing__card-desc {
+  font-size: 13px; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5;
+}
+.pricing__card-price {
+  display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px;
+}
+.pricing__card-amount {
+  font-size: 40px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.02em;
+}
+.pricing__card-currency {
+  font-size: 16px; font-weight: 500; color: var(--gray-500);
+}
+.pricing__card-period {
+  font-size: 13px; color: var(--gray-400); margin-bottom: 28px;
+}
+.pricing__card-cta {
+  display: block; text-align: center; padding: 11px 0; border-radius: 6px;
+  font-size: 14px; font-weight: 500; text-decoration: none;
+  margin-bottom: 28px; transition: all 0.15s ease;
+}
+.pricing__card-cta--primary {
+  background: var(--gray-900); color: #fff;
+}
+.pricing__card-cta--primary:hover { background: var(--gray-800); }
+.pricing__card-cta--secondary {
+  background: #fff; color: var(--gray-700); border: 1px solid var(--gray-300);
+}
+.pricing__card-cta--secondary:hover { background: var(--gray-100); }
+.pricing__card-divider {
+  height: 1px; background: var(--gray-200); margin-bottom: 24px;
+}
+.pricing__card-features-title {
+  font-size: 12px; font-weight: 600; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;
+}
+.pricing__card-features {
+  list-style: none; display: flex; flex-direction: column; gap: 10px;
+}
+.pricing__card-feature {
+  font-size: 13px; color: var(--gray-600); display: flex; gap: 10px; align-items: flex-start; line-height: 1.4;
+}
+.pricing__card-check {
+  flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px;
+}
+.pricing__card-check svg {
+  width: 16px; height: 16px; stroke: #16A34A; stroke-width: 2; fill: none;
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .hero__inner { grid-template-columns: 1fr; padding: 48px 24px 40px; }
@@ -254,6 +376,8 @@ body::after {
   .feat--right .feat__visual { margin-right: -24px; }
   .feat--left .feat__visual { margin-left: -24px; order: 2; }
   .feat { padding: 60px 0; }
+  .pricing__cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .pricing { min-height: auto; }
   .guides { display: none; }
   .section-bar__inner { gap: 0; overflow-x: auto; }
   .section-bar__item { font-size: 11px; padding: 0 10px; }
@@ -437,12 +561,117 @@ body::after {
 
 </div>
 
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing__inner">
+    <div class="pricing__header reveal">
+      <div class="pricing__tag">Тарифи</div>
+      <h2 class="pricing__title">Простий прайсинг без сюрпризів</h2>
+      <p class="pricing__subtitle">Почніть безкоштовно. Перші 14 днів — повний функціонал Pro AI без обмежень.</p>
+    </div>
+
+    <div class="pricing__toggle reveal">
+      <span class="pricing__toggle-label pricing__toggle-label--active" id="lblMonthly">Місячно</span>
+      <button class="pricing__toggle-switch" id="toggleBilling" type="button"></button>
+      <span class="pricing__toggle-label" id="lblAnnual">Річно</span>
+      <span class="pricing__save">−20%</span>
+    </div>
+
+    <div class="pricing__cards">
+      <!-- CLASSIC -->
+      <div class="pricing__card reveal">
+        <div class="pricing__card-name">Classic</div>
+        <div class="pricing__card-desc">Для фірм, що переходять з Excel і хочуть навести порядок</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-amount" data-monthly="300" data-annual="240">300</span>
+          <span class="pricing__card-currency">₴</span>
+        </div>
+        <div class="pricing__card-period">за користувача / місяць</div>
+        <a href="#" class="pricing__card-cta pricing__card-cta--secondary">Почати безкоштовно</a>
+        <div class="pricing__card-divider"></div>
+        <div class="pricing__card-features-title">Включено</div>
+        <ul class="pricing__card-features">
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Управління справами</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Задачі, контакти, документи</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Календар</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Інвойсинг + білінг часу</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Email (Gmail / Outlook)</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Мультивалютність</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Безпека + 2FA</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Email-підтримка</li>
+        </ul>
+      </div>
+
+      <!-- PRO AI -->
+      <div class="pricing__card pricing__card--featured reveal">
+        <div class="pricing__card-badge">Найпопулярніший</div>
+        <div class="pricing__card-name">Pro AI</div>
+        <div class="pricing__card-desc">Повний набір інструментів + AI для юридичної практики</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-amount" data-monthly="500" data-annual="400">500</span>
+          <span class="pricing__card-currency">₴</span>
+        </div>
+        <div class="pricing__card-period">за користувача / місяць</div>
+        <a href="#" class="pricing__card-cta pricing__card-cta--primary">Почати безкоштовно</a>
+        <div class="pricing__card-divider"></div>
+        <div class="pricing__card-features-title">Все з Classic, плюс</div>
+        <ul class="pricing__card-features">
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Етапи справ + dashboard фірми</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Бюджети справ + управління ставками</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Practice groups + групи справ</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Автоматизація документів</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><strong>AI-диктовка</strong> — voice → опис справи</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><strong>Enhance with AI</strong> — юридичний стиль</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><strong>RAG</strong> по knowledge base фірми</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Чати + телефон-підтримка + тренінги</li>
+        </ul>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="pricing__card reveal">
+        <div class="pricing__card-name">Enterprise</div>
+        <div class="pricing__card-desc">Для великих фірм з вимогами до безпеки і кастомізації</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-amount">—</span>
+        </div>
+        <div class="pricing__card-period">індивідуальна ціна</div>
+        <a href="#" class="pricing__card-cta pricing__card-cta--secondary">Зв'язатися</a>
+        <div class="pricing__card-divider"></div>
+        <div class="pricing__card-features-title">Все з Pro AI, плюс</div>
+        <ul class="pricing__card-features">
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Self-hosted — CRM на вашому сервері</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Кастомні модифікації CRM</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Розробка нових інструментів</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Персональний менеджер + SLA</li>
+          <li class="pricing__card-feature"><span class="pricing__card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Знижки на об'єм (10+ юристів)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal, .feat__point').forEach(el => io.observe(el));
+
+  // Pricing toggle
+  const toggle = document.getElementById('toggleBilling');
+  const lblM = document.getElementById('lblMonthly');
+  const lblA = document.getElementById('lblAnnual');
+  const amounts = document.querySelectorAll('.pricing__card-amount[data-monthly]');
+  let isAnnual = false;
+  toggle.addEventListener('click', () => {
+    isAnnual = !isAnnual;
+    toggle.classList.toggle('annual', isAnnual);
+    lblM.classList.toggle('pricing__toggle-label--active', !isAnnual);
+    lblA.classList.toggle('pricing__toggle-label--active', isAnnual);
+    amounts.forEach(el => {
+      el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+    });
+  });
 
   const bar = document.getElementById('sectionBar');
   const barItems = bar.querySelectorAll('.section-bar__item');
