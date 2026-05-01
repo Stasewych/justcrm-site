@@ -283,6 +283,52 @@ body::after {
   font-size: 13px; line-height: 1.6; color: var(--gray-500);
 }
 
+/* --- FAQ --- */
+.faq {
+  position: relative; z-index: 1; background: #fff;
+  min-height: 100vh; display: flex; align-items: center;
+  scroll-snap-align: start; padding: 80px 0;
+}
+.faq__inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 24px; width: 100%;
+  display: grid; grid-template-columns: 360px 1fr; gap: 64px; align-items: start;
+}
+.faq__tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-400); margin-bottom: 14px;
+}
+.faq__title {
+  font-size: 32px; font-weight: 700; color: var(--gray-900);
+  letter-spacing: -0.015em; margin-bottom: 16px;
+}
+.faq__subtitle {
+  font-size: 15px; line-height: 1.7; color: var(--gray-500);
+}
+.faq__list { list-style: none; }
+.faq__item {
+  border-bottom: 1px solid var(--gray-200);
+}
+.faq__item:first-child { border-top: 1px solid var(--gray-200); }
+.faq__q {
+  width: 100%; background: none; border: none; font-family: var(--font);
+  font-size: 15px; font-weight: 600; color: var(--gray-800);
+  text-align: left; padding: 18px 32px 18px 0; cursor: pointer;
+  position: relative; line-height: 1.4;
+}
+.faq__q::after {
+  content: '+'; position: absolute; right: 0; top: 18px;
+  font-size: 20px; font-weight: 400; color: var(--gray-400);
+  transition: transform 0.2s ease;
+}
+.faq__item.open .faq__q::after {
+  transform: rotate(45deg);
+}
+.faq__a {
+  font-size: 14px; line-height: 1.7; color: var(--gray-500);
+  padding: 0 0 18px; display: none;
+}
+.faq__item.open .faq__a { display: block; }
+
 /* --- PRICING --- */
 .pricing {
   position: relative; z-index: 1; background: #fff;
@@ -415,6 +461,8 @@ body::after {
   .feat--right .feat__visual { margin-right: -24px; }
   .feat--left .feat__visual { margin-left: -24px; order: 2; }
   .feat { padding: 60px 0; }
+  .faq__inner { grid-template-columns: 1fr; }
+  .faq { min-height: auto; }
   .security__inner { grid-template-columns: 1fr; }
   .security { min-height: auto; }
   .pricing__cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
@@ -441,6 +489,7 @@ body::after {
     <a class="section-bar__item" href="#feat-contacts">Контакти</a>
     <a class="section-bar__item" href="#feat-ai">AI</a>
     <a class="section-bar__item" href="#security">Безпека</a>
+    <a class="section-bar__item" href="#faq">FAQ</a>
     <a class="section-bar__item" href="#pricing">Тарифи</a>
   </div>
 </div>
@@ -642,6 +691,51 @@ body::after {
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq__inner">
+    <div class="reveal">
+      <div class="faq__tag">Питання</div>
+      <h2 class="faq__title">Що запитують юрфірми перед підключенням</h2>
+      <p class="faq__subtitle">Якщо не знайшли відповідь — напишіть нам, відповімо за годину в робочий час.</p>
+    </div>
+    <ul class="faq__list reveal">
+      <li class="faq__item">
+        <button class="faq__q">Чим JustCRM відрізняється від JusNote?</button>
+        <div class="faq__a">JusNote — зріла CRM, але без AI-функцій у жодному тарифі. JustCRM дає голосове надиктовування тайм-ентрі, покращення текстів через AI і RAG-пошук по вашій базі знань. Інтерфейс повністю українською, ціни в гривнях — від 300 ₴/юзер замість ~850 ₴ у JusNote.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Як перенести дані з Excel, Notion або іншої системи?</button>
+        <div class="faq__a">Імпорт контактів, справ і документів через CSV/Excel з маппінгом полів. Якщо ведете справи в Notion чи Google Sheets — допоможемо з міграцією. Типовий онбординг для фірми до 10 людей — 2-3 дні. Ваші попередні файли залишаються недоторканими.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Наскільки безпечно зберігати дані клієнтів?</button>
+        <div class="faq__a">Сервери на AWS у Європі. Шифрування з'єднань (TLS), паролі — bcrypt, файли — ізольоване S3-сховище. Кожна фірма працює в окремому просторі, архітектурно ізольованому від інших. 2FA, RBAC, аудит-лог дій. Дані клієнтів не використовуються для навчання AI-моделей.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Чи можу оплачувати як ФОП і отримати рахунок у гривнях?</button>
+        <div class="faq__a">Так. Оплата в гривнях, рахунки для ФОП та юридичних осіб, акти виконаних робіт. Місячна або річна оплата зі знижкою 20% за річну передплату.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Як працює AI і чи можна довіряти його результатам?</button>
+        <div class="faq__a">AI виконує три речі: надиктовування (voice → тайм-ентрі), покращення тексту (юридичний стиль), і RAG-пошук по вашим документам і шаблонам. AI не приймає рішень — він генерує чернетки, юрист перевіряє і підтверджує. Конфіденційні дані не передаються для навчання моделей.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Скільки часу потрібно на впровадження?</button>
+        <div class="faq__a">Реєстрація і базове налаштування — 15 хвилин. Повний онбординг з міграцією і навчанням — 2-3 дні. Інтерфейс українською, інтуїтивна навігація. Для команд від 5 осіб — персональний менеджер онбордингу.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Чи є мобільний додаток?</button>
+        <div class="faq__a">Зараз JustCRM — веб-додаток, що працює у браузері на будь-якому пристрої. Мобільний додаток для iOS і Android у плані розробки. Ми фокусуємо ресурси на тому, щоб десктопна версія і AI працювали бездоганно.</div>
+      </li>
+      <li class="faq__item">
+        <button class="faq__q">Що буде з даними, якщо я вирішу піти?</button>
+        <div class="faq__a">Ваші дані належать вам. Експорт контактів, справ, документів і тайм-ентрі у CSV/PDF у будь-який момент. Після завершення підписки акаунт зберігається 90 днів. Жодних штучних бар'єрів для виходу.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="pricing__inner">
@@ -737,6 +831,16 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal, .feat__point').forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq__q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
 
   // Pricing toggle
   const toggle = document.getElementById('toggleBilling');
