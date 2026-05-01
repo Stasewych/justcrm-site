@@ -134,16 +134,46 @@ body { font-family: var(--font); color: var(--gray-800); background: var(--surfa
 </head>
 <body>
 
+<link rel="stylesheet" href="shared.css">
 <header class="header">
   <div class="header__inner">
     <a href="index.html" class="logo">
-      <img src="assets/images/logo.png" alt="JustCRM">
-      <span>JustCRM</span>
+      <img class="logo__mark" src="assets/images/logo.png" alt="JustCRM">
+      <span class="logo__name">JustCRM</span>
     </a>
-    <a href="index.html#pricing" class="header__back">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Назад до тарифів
-    </a>
+    <nav class="nav">
+      <div class="nav__item">
+        Продукт
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="index.html#feat-cases">Управління справами</a>
+            <a href="billing.html">Білінг і час</a>
+            <a href="index.html#feat-tasks">Задачі</a>
+            <a href="index.html#feat-contacts">Контакти</a>
+            <a href="index.html#feat-ai">AI-можливості</a>
+          </div>
+        </div>
+      </div>
+      <a href="compare.html" class="nav__link">Порівняння тарифів</a>
+      <a href="index.html#security" class="nav__link">Безпека</a>
+      <div class="nav__item">
+        Компанія
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="#">Про нас</a>
+            <a href="#">Команда</a>
+            <a href="#">Контакти</a>
+            <a href="#">Блог</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header__right">
+      <a href="#" class="header__login">Увійти</a>
+      <a href="#" class="header__cta">Почати безкоштовно</a>
+    </div>
   </div>
 </header>
 
@@ -266,6 +296,30 @@ body { font-family: var(--font); color: var(--gray-800); background: var(--surfa
     <tr class="compare__row"><td>Знижки на об'єм (10+ юристів)</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
   </table>
 </div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta__title">Спробуйте JustCRM безкоштовно</h2>
+  <p class="final-cta__desc">14 днів повного функціоналу Pro AI. Без картки, без зобов'язань.</p>
+  <div class="final-cta__actions">
+    <a href="#" class="final-cta__btn-primary">Почати безкоштовно</a>
+    <a href="#" class="final-cta__btn-secondary">Замовити демо</a>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__col"><div class="footer__col-title">Продукт</div><ul class="footer__links"><li><a href="index.html#feat-cases">Справи</a></li><li><a href="billing.html">Білінг</a></li><li><a href="index.html#feat-tasks">Задачі</a></li><li><a href="index.html#feat-contacts">Контакти</a></li><li><a href="index.html#feat-ai">AI</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Ресурси</div><ul class="footer__links"><li><a href="index.html#security">Безпека</a></li><li><a href="index.html#pricing">Тарифи</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Правове</div><ul class="footer__links"><li><a href="#">Конфіденційність</a></li><li><a href="#">Умови використання</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Контакти</div><ul class="footer__links"><li><a href="mailto:info@justsolution.org">info@justsolution.org</a></li><li><a href="tel:+380501234567">+380 50 123 45 67</a></li><li>Київ, Україна</li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__left"><div class="footer__logo"><img class="footer__logo-mark" src="assets/images/logo.png" alt=""> JustCRM</div><span class="footer__copy">© 2026 Just Solution</span></div>
+      <div class="footer__right"><a href="#" class="footer__contact-link">Конфіденційність</a><a href="#" class="footer__contact-link">Умови</a><div class="footer__social"><a href="https://www.linkedin.com/company/just-solution-ua/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a></div></div>
+    </div>
+  </div>
+</footer>
 
 <script>
 const toggle = document.getElementById('toggleBilling');
