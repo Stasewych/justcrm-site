@@ -252,9 +252,7 @@ body::after {
 }
 .security__inner {
   max-width: 1180px; margin: 0 auto; padding: 0 24px; width: 100%;
-}
-.security__header {
-  max-width: 560px; margin-bottom: 56px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
 }
 .security__tag {
   font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
@@ -265,25 +263,23 @@ body::after {
   margin-bottom: 16px;
 }
 .security__subtitle {
-  font-size: 16px; line-height: 1.7; color: var(--gray-400);
+  font-size: 16px; line-height: 1.7; color: var(--gray-400); margin-bottom: 40px;
 }
-.security__grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+.security__headline {
+  font-size: 20px; font-weight: 500; line-height: 1.6; color: var(--gray-300);
+  border-left: 2px solid var(--gray-600); padding-left: 20px;
 }
-.security__card {
-  padding: 28px 24px; border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 10px; background: rgba(255,255,255,0.03);
+.security__points {
+  list-style: none; display: flex; flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
-.security__card-icon {
-  width: 20px; height: 20px; margin-bottom: 16px;
+.security__point {
+  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.security__card-icon svg {
-  width: 20px; height: 20px; stroke: var(--gray-400); stroke-width: 1.5; fill: none;
+.security__point-title {
+  font-size: 15px; font-weight: 600; margin-bottom: 4px;
 }
-.security__card-title {
-  font-size: 15px; font-weight: 600; margin-bottom: 6px;
-}
-.security__card-desc {
+.security__point-desc {
   font-size: 13px; line-height: 1.6; color: var(--gray-400);
 }
 
@@ -419,7 +415,7 @@ body::after {
   .feat--right .feat__visual { margin-right: -24px; }
   .feat--left .feat__visual { margin-left: -24px; order: 2; }
   .feat { padding: 60px 0; }
-  .security__grid { grid-template-columns: 1fr; }
+  .security__inner { grid-template-columns: 1fr; }
   .security { min-height: auto; }
   .pricing__cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
   .pricing { min-height: auto; }
@@ -611,41 +607,36 @@ body::after {
 <!-- SECURITY -->
 <section class="security" id="security">
   <div class="security__inner">
-    <div class="security__header reveal">
+    <div class="reveal">
       <div class="security__tag">Безпека</div>
-      <h2 class="security__title">Ваші дані під захистом</h2>
-      <p class="security__subtitle">JustCRM побудована на AWS інфраструктурі в Європі. Ми не зберігаємо паролі у відкритому вигляді, ізолюємо дані кожної фірми і шифруємо з'єднання.</p>
+      <h2 class="security__title">Адвокатська таємниця — наша інженерна задача</h2>
+      <p class="security__subtitle">JustCRM побудована на AWS у Європі. Ваші дані зашифровані, ізольовані і доступні тільки вашій команді.</p>
+      <div class="security__headline">Юридична фірма працює з конфіденційною інформацією щодня. Ми будуємо систему так, щоб ви могли не думати про безпеку — вона працює за замовчуванням.</div>
     </div>
-    <div class="security__grid">
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-        <div class="security__card-title">Шифрування даних</div>
-        <div class="security__card-desc">HTTPS/TLS для всіх з'єднань. Паролі хешуються bcrypt. Дані зберігаються в ізольованому сховищі S3.</div>
+    <div class="security__points reveal">
+      <div class="security__point">
+        <div class="security__point-title">AWS інфраструктура, дата-центр в ЄС</div>
+        <div class="security__point-desc">Сервери у Європі. Мережева ізоляція — база даних недоступна ззовні, тільки внутрішній backend.</div>
       </div>
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="security__card-title">AWS інфраструктура (EU)</div>
-        <div class="security__card-desc">Хостинг на AWS у Європі. Мережева ізоляція сервісів — база даних недоступна ззовні.</div>
+      <div class="security__point">
+        <div class="security__point-title">Шифрування на кожному рівні</div>
+        <div class="security__point-desc">HTTPS/TLS для всіх з'єднань. Паролі — bcrypt. Файли — ізольоване S3-сховище з ID організації.</div>
       </div>
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
-        <div class="security__card-title">Ізоляція даних</div>
-        <div class="security__card-desc">Кожна юрфірма — окремий простір. Дані однієї організації недоступні іншій на рівні архітектури.</div>
+      <div class="security__point">
+        <div class="security__point-title">Ізоляція даних між фірмами</div>
+        <div class="security__point-desc">Кожна організація — окремий простір. Архітектурно неможливо отримати доступ до чужих даних.</div>
       </div>
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <div class="security__card-title">Security headers</div>
-        <div class="security__card-desc">X-Frame-Options, XSS-Protection, Content-Type-Options, Referrer-Policy — захист від типових веб-атак.</div>
+      <div class="security__point">
+        <div class="security__point-title">Двофакторна автентифікація (2FA)</div>
+        <div class="security__point-desc">Додатковий рівень захисту при вході. JWT-токени з обмеженим часом дії і автоматичною інвалідацією.</div>
       </div>
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <div class="security__card-title">Автентифікація JWT</div>
-        <div class="security__card-desc">Токени з обмеженим часом дії. Refresh-механізм з інвалідацією при виході. Верифікація webhook'ів HMAC-SHA256.</div>
+      <div class="security__point">
+        <div class="security__point-title">Захист від веб-атак</div>
+        <div class="security__point-desc">X-Frame-Options, XSS-Protection, Content-Type-Options, strict Referrer-Policy на рівні Nginx.</div>
       </div>
-      <div class="security__card reveal">
-        <div class="security__card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <div class="security__card-title">В розробці</div>
-        <div class="security__card-desc">Двофакторна автентифікація (2FA), розширений RBAC з ролями, та журнал аудиту дій — у найближчих релізах.</div>
+      <div class="security__point">
+        <div class="security__point-title">RBAC і аудит — в розробці</div>
+        <div class="security__point-desc">Розширена система ролей та повний журнал дій — у найближчих релізах.</div>
       </div>
     </div>
   </div>
