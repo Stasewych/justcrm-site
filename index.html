@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JustCRM — юридична CRM</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -111,14 +113,58 @@ body::after {
 }
 .logo { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
 .logo__mark {
-  width: 28px; height: 28px; background: var(--gray-900); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 11px; font-weight: 600;
+  height: 32px; width: auto;
 }
 .logo__name { font-size: 16px; font-weight: 600; color: var(--gray-900); }
-.nav { display: flex; gap: 28px; }
-.nav a { font-size: 13px; font-weight: 500; color: var(--gray-500); text-decoration: none; }
-.nav a:hover { color: var(--gray-800); }
+.nav { display: flex; gap: 24px; }
+.nav__item {
+  position: relative; font-size: 13px; font-weight: 500;
+  color: var(--gray-500); text-decoration: none; cursor: pointer;
+  padding: 8px 0; display: flex; align-items: center; gap: 4px;
+}
+.nav__item:hover { color: var(--gray-800); }
+.nav__chevron {
+  width: 10px; height: 10px; stroke: currentColor; stroke-width: 2; fill: none;
+  transition: transform 0.2s ease;
+}
+.nav__item:hover .nav__chevron { transform: rotate(180deg); }
+.nav__dropdown {
+  position: absolute; top: 100%; left: -16px;
+  background: #fff; border: 1px solid var(--gray-200); border-radius: 10px;
+  padding: 8px 0; min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 12px 28px rgba(0,0,0,0.08);
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  z-index: 200;
+}
+.nav__item:hover .nav__dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.nav__dropdown-section {
+  padding: 4px 0;
+}
+.nav__dropdown-section + .nav__dropdown-section {
+  border-top: 1px solid var(--gray-100);
+}
+.nav__dropdown-label {
+  font-size: 10px; font-weight: 600; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 8px 16px 4px;
+}
+.nav__dropdown a {
+  display: block; padding: 7px 16px; font-size: 13px; font-weight: 400;
+  color: var(--gray-600); text-decoration: none;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+.nav__dropdown a:hover { background: var(--gray-100); color: var(--gray-900); }
+.nav__dropdown a .nav__link-hint {
+  font-size: 11px; color: var(--gray-400); display: block; margin-top: 1px;
+}
+.nav__link {
+  font-size: 13px; font-weight: 500; color: var(--gray-500);
+  text-decoration: none; padding: 8px 0;
+}
+.nav__link:hover { color: var(--gray-800); }
 .header__right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
 .header__login { font-size: 13px; font-weight: 500; color: var(--gray-500); text-decoration: none; }
 .header__cta {
@@ -522,9 +568,7 @@ body::after {
   font-size: 13px; font-weight: 600; color: var(--gray-700);
 }
 .footer__logo-mark {
-  width: 20px; height: 20px; background: var(--gray-800); border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 8px; font-weight: 700;
+  height: 22px; width: auto;
 }
 .footer__copy { font-size: 11px; color: var(--gray-400); }
 .footer__right { display: flex; align-items: center; gap: 20px; }
@@ -613,14 +657,71 @@ body::after {
 <header class="header">
   <div class="header__inner">
     <a href="/" class="logo">
-      <div class="logo__mark">JS</div>
+      <img class="logo__mark" src="assets/images/logo.png" alt="JustCRM">
       <span class="logo__name">JustCRM</span>
     </a>
     <nav class="nav">
-      <a href="#features">Продукт</a>
-      <a href="#pricing">Тарифи</a>
-      <a href="#security">Безпека</a>
-      <a href="#about">Компанія</a>
+      <div class="nav__item">
+        Продукт
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <div class="nav__dropdown-label">Можливості</div>
+            <a href="#feat-cases">Управління справами <span class="nav__link-hint">Kanban, етапи, прив'язка клієнтів</span></a>
+            <a href="#feat-billing">Білінг і час <span class="nav__link-hint">Таймер, інвойси, звіти</span></a>
+            <a href="#feat-tasks">Задачі <span class="nav__link-hint">Kanban, список, календар</span></a>
+            <a href="#feat-contacts">Контакти <span class="nav__link-hint">Клієнти, email-інтеграція</span></a>
+            <a href="#feat-ai">AI-можливості <span class="nav__link-hint">Диктовка, enhance, RAG</span></a>
+          </div>
+          <div class="nav__dropdown-section">
+            <div class="nav__dropdown-label">Також</div>
+            <a href="#">Документи</a>
+            <a href="#">Календар</a>
+            <a href="#">Інтеграції</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav__item">
+        Рішення
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <div class="nav__dropdown-label">За розміром фірми</div>
+            <a href="#">Solo-юрист <span class="nav__link-hint">1-2 юристи, ФОП</span></a>
+            <a href="#">Мала фірма <span class="nav__link-hint">3-10 юристів</span></a>
+            <a href="#">Середня фірма <span class="nav__link-hint">10-50 юристів</span></a>
+            <a href="#">Enterprise <span class="nav__link-hint">50+ юристів, кастомізація</span></a>
+          </div>
+          <div class="nav__dropdown-section">
+            <div class="nav__dropdown-label">Порівняння</div>
+            <a href="#">JustCRM vs JusNote</a>
+            <a href="#">JustCRM vs LIGA360</a>
+            <a href="#">JustCRM vs Excel</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#pricing" class="nav__link">Тарифи</a>
+      <a href="#security" class="nav__link">Безпека</a>
+
+      <div class="nav__item">
+        Компанія
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="#">Про нас</a>
+            <a href="#">Команда</a>
+            <a href="#">Контакти</a>
+          </div>
+          <div class="nav__dropdown-section">
+            <div class="nav__dropdown-label">Ресурси</div>
+            <a href="#">Блог</a>
+            <a href="#">Кар'єра</a>
+            <a href="#">Changelog</a>
+          </div>
+        </div>
+      </div>
     </nav>
     <div class="header__right">
       <a href="#" class="header__login">Увійти</a>
@@ -964,7 +1065,7 @@ body::after {
     </div>
     <div class="footer__bottom">
       <div class="footer__left">
-        <div class="footer__logo"><span class="footer__logo-mark">JS</span> JustCRM</div>
+        <div class="footer__logo"><img class="footer__logo-mark" src="assets/images/logo.png" alt=""> JustCRM</div>
         <span class="footer__copy">© 2026 Just Solution</span>
       </div>
       <div class="footer__right">
