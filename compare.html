@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Порівняння тарифів — JustCRM</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gray-100: #F3F4F6; --gray-200: #E5E7EB; --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563;
+  --gray-700: #374151; --gray-800: #1F2937; --gray-900: #111827;
+  --surface: #FAFAFA;
+  --font: 'Roboto', system-ui, sans-serif;
+  --green: #16A34A; --red: #DC2626;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font); color: var(--gray-800); background: var(--surface); }
+
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--surface); border-bottom: 1px solid var(--gray-200);
+}
+.header__inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 24px;
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo img { height: 32px; }
+.logo span { font-size: 16px; font-weight: 600; color: var(--gray-900); }
+.header__back {
+  font-size: 13px; color: var(--gray-500); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.header__back:hover { color: var(--gray-800); }
+.header__back svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+.page { max-width: 1080px; margin: 0 auto; padding: 60px 24px 80px; }
+
+.page__header { text-align: center; margin-bottom: 48px; }
+.page__tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-400); margin-bottom: 14px;
+}
+.page__title {
+  font-size: 36px; font-weight: 700; color: var(--gray-900);
+  letter-spacing: -0.015em; margin-bottom: 12px;
+}
+.page__subtitle { font-size: 16px; color: var(--gray-500); margin-bottom: 32px; }
+
+.toggle {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 48px;
+}
+.toggle__label { font-size: 14px; font-weight: 500; color: var(--gray-400); cursor: pointer; }
+.toggle__label--active { color: var(--gray-900); }
+.toggle__switch {
+  width: 44px; height: 24px; background: var(--gray-200); border-radius: 12px;
+  position: relative; cursor: pointer; border: none; padding: 0;
+  transition: background 0.2s ease;
+}
+.toggle__switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; background: #fff; border-radius: 50%;
+  transition: transform 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.toggle__switch.annual { background: var(--gray-900); }
+.toggle__switch.annual::after { transform: translateX(20px); }
+.toggle__save {
+  font-size: 11px; font-weight: 600; color: var(--green); background: #F0FDF4;
+  padding: 2px 8px; border-radius: 99px;
+}
+
+/* TABLE */
+.compare { width: 100%; border-collapse: collapse; }
+
+.compare__plans {
+  position: sticky; top: 56px; z-index: 10; background: var(--surface);
+}
+.compare__plans td {
+  padding: 24px 16px 20px; vertical-align: top;
+  border-bottom: 2px solid var(--gray-200);
+}
+.compare__plans td:first-child { width: 40%; }
+.compare__plan-name { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+.compare__plan-price { display: flex; align-items: baseline; gap: 3px; margin-bottom: 2px; }
+.compare__plan-amount { font-size: 28px; font-weight: 700; color: var(--gray-900); }
+.compare__plan-currency { font-size: 14px; color: var(--gray-500); }
+.compare__plan-period { font-size: 12px; color: var(--gray-400); margin-bottom: 12px; }
+.compare__plan-cta {
+  display: inline-block; font-size: 13px; font-weight: 500; padding: 8px 18px;
+  border-radius: 6px; text-decoration: none; transition: all 0.15s ease;
+}
+.compare__plan-cta--primary { background: var(--gray-900); color: #fff; }
+.compare__plan-cta--primary:hover { background: var(--gray-800); }
+.compare__plan-cta--secondary { background: #fff; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.compare__plan-cta--secondary:hover { background: var(--gray-100); }
+.compare__plan-featured { position: relative; }
+.compare__plan-badge {
+  position: absolute; top: 12px; right: 16px;
+  font-size: 10px; font-weight: 600; color: #fff; background: var(--gray-900);
+  padding: 2px 10px; border-radius: 99px;
+}
+
+.compare__category td {
+  padding: 14px 16px 8px; font-size: 12px; font-weight: 600;
+  color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--gray-200); background: var(--gray-100);
+}
+
+.compare__row td {
+  padding: 12px 16px; font-size: 14px; color: var(--gray-600);
+  border-bottom: 1px solid var(--gray-100); vertical-align: middle;
+}
+.compare__row td:first-child { color: var(--gray-700); font-weight: 500; }
+.compare__row:hover td { background: rgba(0,0,0,0.015); }
+
+.compare__check { color: var(--green); font-size: 16px; }
+.compare__cross { color: var(--gray-300); font-size: 14px; }
+.compare__value { font-size: 13px; color: var(--gray-500); }
+
+@media (max-width: 768px) {
+  .page { padding: 32px 16px 60px; }
+  .page__title { font-size: 28px; }
+  .compare { font-size: 13px; }
+  .compare__plans td { padding: 16px 8px; }
+  .compare__plan-amount { font-size: 22px; }
+  .compare__row td, .compare__category td { padding: 10px 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo.png" alt="JustCRM">
+      <span>JustCRM</span>
+    </a>
+    <a href="index.html#pricing" class="header__back">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Назад до тарифів
+    </a>
+  </div>
+</header>
+
+<div class="page">
+  <div class="page__header">
+    <div class="page__tag">Порівняння тарифів</div>
+    <h1 class="page__title">Що входить у кожен план</h1>
+    <p class="page__subtitle">Детальне порівняння функціоналу Classic, Pro AI та Enterprise</p>
+  </div>
+
+  <div class="toggle">
+    <span class="toggle__label toggle__label--active" id="lblM">Місячно</span>
+    <button class="toggle__switch" id="toggleBilling" type="button"></button>
+    <span class="toggle__label" id="lblA">Річно</span>
+    <span class="toggle__save">−20%</span>
+  </div>
+
+  <table class="compare">
+    <tr class="compare__plans">
+      <td></td>
+      <td>
+        <div class="compare__plan-name">Classic</div>
+        <div class="compare__plan-price">
+          <span class="compare__plan-amount" data-monthly="300" data-annual="240">300</span>
+          <span class="compare__plan-currency">₴/міс</span>
+        </div>
+        <div class="compare__plan-period">за користувача</div>
+        <a href="#" class="compare__plan-cta compare__plan-cta--secondary">Почати</a>
+      </td>
+      <td class="compare__plan-featured">
+        <div class="compare__plan-badge">Популярний</div>
+        <div class="compare__plan-name">Pro AI</div>
+        <div class="compare__plan-price">
+          <span class="compare__plan-amount" data-monthly="500" data-annual="400">500</span>
+          <span class="compare__plan-currency">₴/міс</span>
+        </div>
+        <div class="compare__plan-period">за користувача</div>
+        <a href="#" class="compare__plan-cta compare__plan-cta--primary">Почати</a>
+      </td>
+      <td>
+        <div class="compare__plan-name">Enterprise</div>
+        <div class="compare__plan-price">
+          <span class="compare__plan-amount">—</span>
+        </div>
+        <div class="compare__plan-period">індивідуально</div>
+        <a href="#" class="compare__plan-cta compare__plan-cta--secondary">Зв'язатися</a>
+      </td>
+    </tr>
+
+    <!-- УПРАВЛІННЯ СПРАВАМИ -->
+    <tr class="compare__category"><td colspan="4">Управління справами</td></tr>
+    <tr class="compare__row"><td>Кількість справ</td><td><span class="compare__value">до 20</span></td><td>Необмежено</td><td>Необмежено</td></tr>
+    <tr class="compare__row"><td>Kanban-дошка</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Етапи справ</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Dashboard фірми</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Бюджети справ</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Practice groups</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- КОНТАКТИ -->
+    <tr class="compare__category"><td colspan="4">Контакти</td></tr>
+    <tr class="compare__row"><td>Кількість контактів</td><td><span class="compare__value">до 50</span></td><td>Необмежено</td><td>Необмежено</td></tr>
+    <tr class="compare__row"><td>Фізичні та юридичні особи</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Глобальний пошук</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- ЗАДАЧІ -->
+    <tr class="compare__category"><td colspan="4">Задачі</td></tr>
+    <tr class="compare__row"><td>Список задач</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Kanban, таблиця, календар</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Прив'язка до справ</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- БІЛІНГ І ЧАС -->
+    <tr class="compare__category"><td colspan="4">Білінг і час</td></tr>
+    <tr class="compare__row"><td>Базовий інвойсинг</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Мультивалютність (UAH, EUR, USD)</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Таймер активності</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Управління ставками</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Різні активності в інвойсі</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Зміна платника</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Автооновлення бюджету</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- ДОКУМЕНТИ -->
+    <tr class="compare__category"><td colspan="4">Документи</td></tr>
+    <tr class="compare__row"><td>Сховище</td><td><span class="compare__value">1 GB</span></td><td>Необмежено</td><td>Необмежено</td></tr>
+    <tr class="compare__row"><td>Google Drive</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>OneDrive</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Автоматизація документів</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- КОМУНІКАЦІЯ -->
+    <tr class="compare__category"><td colspan="4">Комунікація</td></tr>
+    <tr class="compare__row"><td>Email-інтеграція (Gmail / Outlook)</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Внутрішні чати</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Календар</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- AI -->
+    <tr class="compare__category"><td colspan="4">AI-можливості</td></tr>
+    <tr class="compare__row"><td>AI-диктовка (voice → опис справи)</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Enhance with AI (юридичний стиль)</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>RAG по knowledge base фірми</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- БЕЗПЕКА -->
+    <tr class="compare__category"><td colspan="4">Безпека</td></tr>
+    <tr class="compare__row"><td>Шифрування (TLS + bcrypt)</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>2FA</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>RBAC (ролі та дозволи)</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Аудит-лог дій</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Self-hosted (ваш сервер)</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- ПІДТРИМКА -->
+    <tr class="compare__category"><td colspan="4">Підтримка</td></tr>
+    <tr class="compare__row"><td>Email-підтримка</td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Телефон-підтримка</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Тренінги та онбординг</td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Персональний менеджер</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>SLA підтримки</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+
+    <!-- ENTERPRISE -->
+    <tr class="compare__category"><td colspan="4">Enterprise</td></tr>
+    <tr class="compare__row"><td>Кастомні модифікації CRM</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Розробка нових інструментів</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+    <tr class="compare__row"><td>Знижки на об'єм (10+ юристів)</td><td><span class="compare__cross">—</span></td><td><span class="compare__cross">—</span></td><td><span class="compare__check">✓</span></td></tr>
+  </table>
+</div>
+
+<script>
+const toggle = document.getElementById('toggleBilling');
+const lblM = document.getElementById('lblM');
+const lblA = document.getElementById('lblA');
+const amounts = document.querySelectorAll('.compare__plan-amount[data-monthly]');
+let isAnnual = false;
+toggle.addEventListener('click', () => {
+  isAnnual = !isAnnual;
+  toggle.classList.toggle('annual', isAnnual);
+  lblM.classList.toggle('toggle__label--active', !isAnnual);
+  lblA.classList.toggle('toggle__label--active', isAnnual);
+  amounts.forEach(el => { el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly; });
+});
+</script>
+</body>
+</html>
