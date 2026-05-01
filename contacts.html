@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакти — JustCRM</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.page {
+  max-width: 1180px; margin: 0 auto; padding: 60px 24px 80px;
+}
+.page__tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-400); margin-bottom: 14px;
+}
+.page__title {
+  font-size: 36px; font-weight: 700; color: var(--gray-900);
+  letter-spacing: -0.015em; margin-bottom: 16px;
+}
+.page__subtitle {
+  font-size: 16px; line-height: 1.7; color: var(--gray-500);
+  max-width: 480px; margin-bottom: 48px;
+}
+.contacts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+}
+.contacts__info { }
+.contacts__block { margin-bottom: 32px; }
+.contacts__block-title {
+  font-size: 12px; font-weight: 600; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+}
+.contacts__item {
+  font-size: 15px; color: var(--gray-700); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px; line-height: 1.5;
+}
+.contacts__item a {
+  color: var(--gray-700); text-decoration: none;
+}
+.contacts__item a:hover { color: var(--gray-900); }
+.contacts__icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+}
+.contacts__icon svg {
+  width: 18px; height: 18px; stroke: var(--gray-400); stroke-width: 1.5; fill: none;
+}
+.contacts__social {
+  display: flex; gap: 12px; margin-top: 24px;
+}
+.contacts__social a {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--gray-200);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray-500); transition: all 0.15s ease;
+}
+.contacts__social a:hover { border-color: var(--gray-300); color: var(--gray-800); }
+.contacts__social svg { width: 16px; height: 16px; fill: currentColor; }
+
+.contacts__form { }
+.form__group { margin-bottom: 20px; }
+.form__label {
+  display: block; font-size: 13px; font-weight: 500;
+  color: var(--gray-700); margin-bottom: 6px;
+}
+.form__input, .form__textarea {
+  width: 100%; font-family: var(--font); font-size: 14px;
+  padding: 10px 14px; border: 1px solid var(--gray-300);
+  border-radius: 6px; background: #fff; color: var(--gray-800);
+  outline: none; transition: border-color 0.15s ease;
+}
+.form__input::placeholder, .form__textarea::placeholder { color: var(--gray-400); }
+.form__input:focus, .form__textarea:focus { border-color: var(--gray-500); }
+.form__textarea { min-height: 120px; resize: vertical; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form__submit {
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  color: #fff; background: var(--gray-900); padding: 11px 28px;
+  border-radius: 6px; border: none; cursor: pointer;
+  transition: background 0.15s ease;
+}
+.form__submit:hover { background: var(--gray-800); }
+
+.contacts__hours {
+  margin-top: 32px; padding: 20px; background: var(--gray-100);
+  border-radius: 8px;
+}
+.contacts__hours-title {
+  font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px;
+}
+.contacts__hours-text {
+  font-size: 13px; color: var(--gray-500); line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .contacts { grid-template-columns: 1fr; gap: 40px; }
+  .form__row { grid-template-columns: 1fr; }
+  .page__title { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo">
+      <img class="logo__mark" src="assets/images/logo.png" alt="JustCRM">
+      <span class="logo__name">JustCRM</span>
+    </a>
+    <nav class="nav">
+      <div class="nav__item">
+        Продукт
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="index.html#feat-cases">Управління справами</a>
+            <a href="billing.html">Білінг і час</a>
+            <a href="index.html#feat-tasks">Задачі</a>
+            <a href="index.html#feat-contacts">Контакти</a>
+            <a href="index.html#feat-ai">AI-можливості</a>
+          </div>
+        </div>
+      </div>
+      <a href="compare.html" class="nav__link">Порівняння тарифів</a>
+      <a href="index.html#security" class="nav__link">Безпека</a>
+      <div class="nav__item">
+        Компанія
+        <svg class="nav__chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-section">
+            <a href="#">Про нас</a>
+            <a href="#">Команда</a>
+            <a href="contacts.html">Контакти</a>
+            <a href="#">Блог</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header__right">
+      <a href="#" class="header__login">Увійти</a>
+      <a href="#" class="header__cta">Почати безкоштовно</a>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <div class="page__tag">Контакти</div>
+  <h1 class="page__title">Зв'яжіться з нами</h1>
+  <p class="page__subtitle">Маєте питання про JustCRM, хочете замовити демо або обговорити Enterprise-рішення? Напишіть нам — відповімо за годину в робочий час.</p>
+
+  <div class="contacts">
+    <div class="contacts__info">
+      <div class="contacts__block">
+        <div class="contacts__block-title">Пошта</div>
+        <div class="contacts__item">
+          <span class="contacts__icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <a href="mailto:info@justsolution.org">info@justsolution.org</a>
+        </div>
+      </div>
+
+      <div class="contacts__block">
+        <div class="contacts__block-title">Телефон</div>
+        <div class="contacts__item">
+          <span class="contacts__icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+          <a href="tel:+380501234567">+380 50 123 45 67</a>
+        </div>
+      </div>
+
+      <div class="contacts__block">
+        <div class="contacts__block-title">Адреса</div>
+        <div class="contacts__item">
+          <span class="contacts__icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          Київ, Україна
+        </div>
+      </div>
+
+      <div class="contacts__social">
+        <a href="https://www.linkedin.com/company/just-solution-ua/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+        </a>
+      </div>
+
+      <div class="contacts__hours">
+        <div class="contacts__hours-title">Робочі години</div>
+        <div class="contacts__hours-text">Пн — Пт: 09:00 — 18:00<br>Відповідь на email — протягом 1 години<br>Демо — за попереднім записом</div>
+      </div>
+    </div>
+
+    <div class="contacts__form">
+      <form>
+        <div class="form__row">
+          <div class="form__group">
+            <label class="form__label">Ім'я</label>
+            <input class="form__input" type="text" placeholder="Олена Коваленко">
+          </div>
+          <div class="form__group">
+            <label class="form__label">Юридична фірма</label>
+            <input class="form__input" type="text" placeholder="Назва фірми">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label class="form__label">Email</label>
+            <input class="form__input" type="email" placeholder="email@firm.ua">
+          </div>
+          <div class="form__group">
+            <label class="form__label">Телефон</label>
+            <input class="form__input" type="tel" placeholder="+380...">
+          </div>
+        </div>
+        <div class="form__group">
+          <label class="form__label">Повідомлення</label>
+          <textarea class="form__textarea" placeholder="Розкажіть, що вас цікавить — демо, Enterprise, інтеграції..."></textarea>
+        </div>
+        <button class="form__submit" type="submit">Надіслати</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta__title">Або просто спробуйте</h2>
+  <p class="final-cta__desc">14 днів Pro AI безкоштовно. Без картки, без дзвінків.</p>
+  <div class="final-cta__actions">
+    <a href="#" class="final-cta__btn-primary">Почати безкоштовно</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div class="footer__col"><div class="footer__col-title">Продукт</div><ul class="footer__links"><li><a href="index.html#feat-cases">Справи</a></li><li><a href="billing.html">Білінг</a></li><li><a href="index.html#feat-tasks">Задачі</a></li><li><a href="index.html#feat-contacts">Контакти</a></li><li><a href="index.html#feat-ai">AI</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Ресурси</div><ul class="footer__links"><li><a href="index.html#security">Безпека</a></li><li><a href="index.html#pricing">Тарифи</a></li><li><a href="index.html#faq">FAQ</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Правове</div><ul class="footer__links"><li><a href="#">Конфіденційність</a></li><li><a href="#">Умови використання</a></li></ul></div>
+      <div class="footer__col"><div class="footer__col-title">Контакти</div><ul class="footer__links"><li><a href="mailto:info@justsolution.org">info@justsolution.org</a></li><li><a href="tel:+380501234567">+380 50 123 45 67</a></li><li>Київ, Україна</li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__left"><div class="footer__logo"><img class="footer__logo-mark" src="assets/images/logo.png" alt=""> JustCRM</div><span class="footer__copy">© 2026 Just Solution</span></div>
+      <div class="footer__right"><a href="#" class="footer__contact-link">Конфіденційність</a><a href="#" class="footer__contact-link">Умови</a><div class="footer__social"><a href="https://www.linkedin.com/company/just-solution-ua/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a></div></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
