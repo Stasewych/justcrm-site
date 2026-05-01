@@ -270,6 +270,39 @@ body::after {
   100% { transform: translateX(-50%); }
 }
 
+/* --- AWARDS --- */
+.awards {
+  position: relative; z-index: 1; background: #fff;
+  padding: 0 0 48px; border-bottom: 1px solid var(--gray-200);
+}
+.awards__inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 24px;
+  display: flex; gap: 0; justify-content: center;
+}
+.awards__item {
+  flex: 1; padding: 28px 32px;
+  border-right: 1px solid var(--gray-200);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.awards__item:last-child { border-right: none; }
+.awards__year {
+  font-size: 11px; font-weight: 500; color: var(--gray-400);
+  letter-spacing: 0.04em; margin-bottom: 8px;
+}
+.awards__title {
+  font-size: 14px; font-weight: 600; color: var(--gray-800);
+  margin-bottom: 4px; line-height: 1.4;
+}
+.awards__event {
+  font-size: 12px; color: var(--gray-400); line-height: 1.4;
+}
+.awards__badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 600; color: #B45309;
+  background: #FFFBEB; padding: 2px 8px; border-radius: 99px;
+  margin-bottom: 10px;
+}
+
 /* --- FEATURES --- */
 .feat {
   position: relative; z-index: 1; padding: 100px 0; overflow: hidden;
@@ -629,6 +662,9 @@ body::after {
   .feat--right .feat__visual { margin-right: -24px; }
   .feat--left .feat__visual { margin-left: -24px; order: 2; }
   .feat { padding: 60px 0; }
+  .awards__inner { flex-direction: column; }
+  .awards__item { border-right: none; border-bottom: 1px solid var(--gray-200); }
+  .awards__item:last-child { border-bottom: none; }
   .faq__inner { grid-template-columns: 1fr; }
   .faq { min-height: auto; }
   .security__inner { grid-template-columns: 1fr; }
@@ -775,6 +811,30 @@ body::after {
     </div>
   </div>
 </section>
+
+<!-- AWARDS -->
+<div class="awards">
+  <div class="awards__inner">
+    <div class="awards__item reveal">
+      <span class="awards__badge">1 місце</span>
+      <div class="awards__title">Найкраща програма юридичної автоматизації</div>
+      <div class="awards__year">Червень 2025</div>
+      <div class="awards__event">Хакатон юридичної автоматизації, УКУ</div>
+    </div>
+    <div class="awards__item reveal">
+      <span class="awards__badge">1 місце</span>
+      <div class="awards__title">Найкращий юридичний стартап</div>
+      <div class="awards__year">Грудень 2025</div>
+      <div class="awards__event">Ideas Lab — стартап-акселератор</div>
+    </div>
+    <div class="awards__item reveal">
+      <span class="awards__badge">1 місце</span>
+      <div class="awards__title">Найкраща інтеграція AI у юридичному треку</div>
+      <div class="awards__year">Січень 2026</div>
+      <div class="awards__event">AI Meetups × НАБУ</div>
+    </div>
+  </div>
+</div>
 
 <!-- FEATURES -->
 <div id="features">
